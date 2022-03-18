@@ -246,7 +246,8 @@ public class NexmarkUtils {
   /** Shape of event rate. */
   public enum RateShape {
     SQUARE,
-    SINE;
+    SINE,
+    CUSTOM;
 
     /** Number of steps used to approximate sine wave. */
     private static final int N = 10;
@@ -291,6 +292,18 @@ public class NexmarkUtils {
             }
             return interEventDelayUs;
           }
+        case CUSTOM:
+        {
+          long[] interEventDelayUs = new long[9];
+          for (int i = 0; i < 9; i++){
+            if (i == 0){
+              interEventDelayUs[i] = unit.rateToPeriodUs(firstRate) * numGenerators;
+            } else {
+              interEventDelayUs[i] = unit.rateToPeriodUs(nextRate) * numGenerators;
+            }
+          }
+          return interEventDelayUs;
+        }
       }
       throw new RuntimeException(); // switch should be exhaustive
     }
@@ -307,6 +320,9 @@ public class NexmarkUtils {
           break;
         case SINE:
           n = N;
+          break;
+        case CUSTOM:
+          n = 2;
           break;
       }
       return (ratePeriodSec + n - 1) / n;
