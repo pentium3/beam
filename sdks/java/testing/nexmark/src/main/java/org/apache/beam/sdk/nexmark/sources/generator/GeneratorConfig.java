@@ -39,8 +39,8 @@ public class GeneratorConfig implements Serializable {
   /** Proportions of people/auctions/bids to synthesize. */
   public static final int PERSON_PROPORTION = 1;
 
-  public static final int AUCTION_PROPORTION = 3;
-  private static final int BID_PROPORTION = 46;
+  public static final int AUCTION_PROPORTION = 1;
+  private static final int BID_PROPORTION = 48;
   public static final int PROPORTION_DENOMINATOR =
       PERSON_PROPORTION + AUCTION_PROPORTION + BID_PROPORTION;
 
