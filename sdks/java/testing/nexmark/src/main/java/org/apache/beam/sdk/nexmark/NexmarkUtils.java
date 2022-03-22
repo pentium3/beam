@@ -322,7 +322,7 @@ public class NexmarkUtils {
           n = N;
           break;
         case CUSTOM:
-          n = 2;
+          n = 1;
           break;
       }
       return (ratePeriodSec + n - 1) / n;
